@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Convert a Word DOCX file to PDF",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "DOCX upload",
+      "Word text extraction",
+      "Word-to-PDF conversion",
+      "PDF download"
+    ],
+    "description": "Verifies a DOCX document is converted into a downloadable PDF.",
+    "steps": [
+      "Choose Word to PDF",
+      "Upload a valid DOCX file containing text",
+      "Choose Convert now",
+      "Download the resulting PDF"
+    ],
+    "expected": "A PDF file is generated and offered as a download."
+  },
+  {
+    "name": "Convert PDF text into Word and PowerPoint",
+    "viewport": "desktop",
+    "covers": [
+      "PDF text extraction",
+      "PDF-to-Word conversion",
+      "PDF-to-PowerPoint conversion",
+      "DOCX and PPTX downloads"
+    ],
+    "description": "Verifies a text-based PDF can be exported into editable Office formats.",
+    "steps": [
+      "Choose PDF to Word and upload a text-based PDF",
+      "Convert and download the DOCX",
+      "Choose PDF to PowerPoint and upload the same PDF",
+      "Convert and download the PPTX"
+    ],
+    "expected": "The converter provides a DOCX and a PPTX file containing extracted PDF text."
+  },
+  {
+    "name": "Convert Excel and PowerPoint files to PDF",
+    "viewport": "desktop",
+    "covers": [
+      "XLSX parsing",
+      "PPTX slide text extraction",
+      "Excel-to-PDF conversion",
+      "PowerPoint-to-PDF conversion"
+    ],
+    "description": "Verifies spreadsheet data and presentation text can be exported as PDFs.",
+    "steps": [
+      "Choose Excel to PDF and upload an XLSX workbook",
+      "Convert and download the PDF",
+      "Choose PowerPoint to PDF and upload a PPTX file",
+      "Convert and download the PDF"
+    ],
+    "expected": "Both Office files produce downloadable PDF documents."
+  },
+  {
+    "name": "Merge PDFs and split a PDF into page files",
+    "viewport": "desktop",
+    "covers": [
+      "multiple PDF upload",
+      "PDF merge",
+      "PDF split",
+      "multiple PDF downloads"
+    ],
+    "description": "Verifies PDF utility workflows produce downloadable documents.",
+    "steps": [
+      "Choose Merge PDFs and upload two PDF files",
+      "Convert and download the merged PDF",
+      "Choose Split PDF and upload a multi-page PDF",
+      "Convert and download the individual page PDFs"
+    ],
+    "expected": "A merged PDF and one PDF file per source page are available."
+  },
+  {
+    "name": "Reject unsupported files and use the converter on mobile",
+    "viewport": "mobile",
+    "covers": [
+      "file type validation",
+      "mobile responsive tool directory",
+      "image-to-PDF conversion",
+      "PDF-to-image export"
+    ],
+    "description": "Verifies invalid file types are rejected and image conversion works on mobile.",
+    "steps": [
+      "Open the converter on mobile",
+      "Choose Word to PDF and attempt to upload a PNG image",
+      "Verify a validation message appears",
+      "Choose Images to PDF and upload a JPG image",
+      "Convert and download the PDF"
+    ],
+    "expected": "Unsupported files are rejected, and image-to-PDF conversion provides a downloadable PDF."
+  }
+]
