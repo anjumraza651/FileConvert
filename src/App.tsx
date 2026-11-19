@@ -235,9 +235,13 @@ function App() {
       <main>
         <section className='hero'>
           <div className='eyebrow'><Sparkles size={14} /> ALL-IN-ONE FILE CONVERTER</div>
-          <h1>Every format.<br /><span>One simple place.</span></h1>
-          <p>Convert Word, PowerPoint, Excel, images and PDF files. Choose a tool, upload your file and download the result.</p>
-        </section>
+          <h1>Free Online File Converter -<br /><span>PDF, Word & PowerPoint</span></h1>
+          <p>
+  Convert PDF to Word, PDF to PowerPoint, Word to PDF, Excel to PDF,
+  PowerPoint to PDF and images to PDF online for free.
+  Merge PDFs, split PDF pages and convert your documents easily.
+  No account required. Your files stay private on your device.
+</p> </section>
         <section className='workspace'>
           <div className='tool-directory'>
             {['Office to PDF', 'PDF to Office', 'Office conversions', 'PDF tools'].map(group => (
@@ -278,7 +282,36 @@ function App() {
             {results.length > 0 && <div className='result-list'>{results.map(item => <a className='download-button' href={item.url} download={item.name} key={item.url}><Download size={17} /> Download {item.name}</a>)}</div>}
           </div>
         </section>
+        <section className='seo-content' aria-labelledby='seo-content-title'>
+          <h2 id='seo-content-title'>Free Online File Conversion Tools</h2>
+          <p>
+            FileConvert helps you convert documents online in your browser.
+            Convert Word documents to PDF, PDF files to Word, PowerPoint
+            presentations to PDF, PDF files to PowerPoint, and Excel
+            spreadsheets to PDF. You can also convert Word documents to
+            PowerPoint, turn JPG and PNG images into PDFs, merge PDF files,
+            split PDF pages, and export PDF pages as PNG images.
+          </p>
+
+          <h2>Simple and Private File Conversion</h2>
+          <p>
+            Choose a conversion tool, select a supported file, and download
+            the converted result. FileConvert processes files in your browser,
+            so your selected documents stay on your device. No account is
+            required.
+          </p>
+
+          <h2>Supported Conversion Tools</h2>
+          <ul>
+            <li>Word to PDF and Word to PowerPoint</li>
+            <li>PDF to Word, PowerPoint, and Excel</li>
+            <li>PowerPoint to PDF and Excel to PDF</li>
+            <li>JPG and PNG images to PDF</li>
+            <li>Merge PDFs, split PDFs, and PDF to PNG images</li>
+          </ul>
+        </section>
         <section className='trust-row'>
+          
           <div><ShieldCheck size={19} /><span><strong>Private by design</strong><small>Files are processed in this browser.</small></span></div>
           <div><Sparkles size={19} /><span><strong>Many formats</strong><small>Office documents, PDFs and images.</small></span></div>
           <div><CheckCircle2 size={19} /><span><strong>No account needed</strong><small>Convert and download instantly.</small></span></div>
