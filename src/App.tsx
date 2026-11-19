@@ -14,19 +14,21 @@ type ToolId = 'word-pdf' | 'pdf-word' | 'ppt-pdf' | 'pdf-ppt' | 'excel-pdf' | 'p
 type Tool = { id: ToolId; title: string; description: string; accept: string; multiple?: boolean; group: string; output: string };
 type Result = { name: string; url: string };
 
+
 const tools: Tool[] = [
-  { id: 'word-pdf', title: 'Word to PDF', description: 'Convert DOCX documents into PDFs.', accept: '.docx', group: 'Office to PDF', output: 'PDF' },
-  { id: 'ppt-pdf', title: 'PowerPoint to PDF', description: 'Export PPTX slide text as a PDF.', accept: '.pptx', group: 'Office to PDF', output: 'PDF' },
-  { id: 'excel-pdf', title: 'Excel to PDF', description: 'Export workbook sheets as a PDF.', accept: '.xlsx,.xls,.csv', group: 'Office to PDF', output: 'PDF' },
-  { id: 'pdf-word', title: 'PDF to Word', description: 'Extract PDF text into an editable DOCX.', accept: '.pdf', group: 'PDF to Office', output: 'DOCX' },
-  { id: 'pdf-ppt', title: 'PDF to PowerPoint', description: 'Create one text slide per PDF page.', accept: '.pdf', group: 'PDF to Office', output: 'PPTX' },
-  { id: 'pdf-excel', title: 'PDF to Excel', description: 'Extract PDF text into a worksheet.', accept: '.pdf', group: 'PDF to Office', output: 'XLSX' },
-  { id: 'word-ppt', title: 'Word to PowerPoint', description: 'Turn document paragraphs into slides.', accept: '.docx', group: 'Office conversions', output: 'PPTX' },
-  { id: 'images-pdf', title: 'Images to PDF', description: 'Combine JPG and PNG images into a PDF.', accept: 'image/jpeg,image/png', multiple: true, group: 'PDF tools', output: 'PDF' },
-  { id: 'merge', title: 'Merge PDFs', description: 'Combine multiple PDF documents.', accept: '.pdf', multiple: true, group: 'PDF tools', output: 'PDF' },
-  { id: 'split', title: 'Split PDF', description: 'Export each PDF page separately.', accept: '.pdf', group: 'PDF tools', output: 'PDF pages' },
-  { id: 'pdf-images', title: 'PDF to images', description: 'Export pages as PNG images.', accept: '.pdf', group: 'PDF tools', output: 'PNG' }
+  { id: 'word-pdf', title: 'Word to PDF', description: 'Convert Word DOCX documents to PDF files online for free.', accept: '.docx', group: 'Office to PDF', output: 'PDF' },
+  { id: 'ppt-pdf', title: 'PowerPoint to PDF', description: 'Convert PowerPoint PPTX presentations to PDF documents online.', accept: '.pptx', group: 'Office to PDF', output: 'PDF' },
+  { id: 'excel-pdf', title: 'Excel to PDF', description: 'Convert Excel XLSX, XLS and CSV spreadsheets to PDF files.', accept: '.xlsx,.xls,.csv', group: 'Office to PDF', output: 'PDF' },
+  { id: 'pdf-word', title: 'PDF to Word', description: 'Extract PDF text and convert it into an editable Word DOCX document.', accept: '.pdf', group: 'PDF to Office', output: 'DOCX' },
+  { id: 'pdf-ppt', title: 'PDF to PowerPoint', description: 'Convert PDF pages into PowerPoint presentation slides.', accept: '.pdf', group: 'PDF to Office', output: 'PPTX' },
+  { id: 'pdf-excel', title: 'PDF to Excel', description: 'Extract text from PDF files into an Excel spreadsheet.', accept: '.pdf', group: 'PDF to Office', output: 'XLSX' },
+  { id: 'word-ppt', title: 'Word to PowerPoint', description: 'Convert Word document paragraphs into PowerPoint slides.', accept: '.docx', group: 'Office conversions', output: 'PPTX' },
+  { id: 'images-pdf', title: 'Images to PDF', description: 'Convert JPG and PNG images into a single PDF document.', accept: 'image/jpeg,image/png', multiple: true, group: 'PDF tools', output: 'PDF' },
+  { id: 'merge', title: 'Merge PDFs', description: 'Combine multiple PDF files into one PDF document online.', accept: '.pdf', multiple: true, group: 'PDF tools', output: 'PDF' },
+  { id: 'split', title: 'Split PDF', description: 'Split a PDF document into separate pages.', accept: '.pdf', group: 'PDF tools', output: 'PDF pages' },
+  { id: 'pdf-images', title: 'PDF to images', description: 'Convert PDF pages into downloadable PNG images.', accept: '.pdf', group: 'PDF tools', output: 'PNG' }
 ];
+
 
 const isPdf = (file: File) => file.name.toLowerCase().endsWith('.pdf') || file.type === 'application/pdf';
 const isDocx = (file: File) => file.name.toLowerCase().endsWith('.docx');
