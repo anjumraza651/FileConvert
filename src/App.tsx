@@ -312,6 +312,26 @@ function App() {
             <li>Merge PDFs, split PDFs, and PDF to PNG images</li>
           </ul>
         </section>
+
+<section className="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Is FileConvert free to use?</h3>
+  <p>Yes, FileConvert offers free online tools to convert PDF, Word, PowerPoint, Excel and image files.</p>
+
+  <h3>How can I convert Word to PDF?</h3>
+  <p>Select the Word to PDF tool, upload your DOCX file, and download your converted PDF document.</p>
+
+  <h3>Can I convert PDF to Word?</h3>
+  <p>Yes, you can extract text from PDF files and create an editable Word document.</p>
+
+  <h3>Can I merge multiple PDF files?</h3>
+  <p>Yes, select the Merge PDFs tool to combine multiple PDF documents into one file.</p>
+
+  <h3>Are my files private?</h3>
+  <p>FileConvert processes supported files in your browser. Your selected files stay on your device.</p>
+</section>
+
         <section className='trust-row'>
           
           <div><ShieldCheck size={19} /><span><strong>Private by design</strong><small>Files are processed in this browser.</small></span></div>
