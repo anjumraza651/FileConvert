@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { PDFDocument } from 'pdf-lib';
 
@@ -185,9 +185,14 @@ async function extractSlides(file: File): Promise<string[]> {
 
 
 function App() {
-
+  const wordPdfPath = '/word-to-pdf';
+  const [isWordToPdfPage, setIsWordToPdfPage] = useState(
+    () => window.location.pathname.replace(/\/+$/, '') === wordPdfPath
+  );
   const [selected, setSelected] = useState<ToolId>('word-pdf');
-  const [showConverter, setShowConverter] = useState(false);
+  const [showConverter, setShowConverter] = useState(
+    () => window.location.pathname.replace(/\/+$/, '') === wordPdfPath
+  );
 
   const [files, setFiles] = useState<File[]>([]);
 
@@ -202,6 +207,41 @@ function App() {
   const current = tools.find(tool => tool.id === selected)!;
 
 
+
+  useEffect(() => {
+    document.title = isWordToPdfPage
+      ? 'Word to PDF Converter - Free Online DOCX to PDF | FileConvert'
+      : 'FileConvert - Free Online PDF, Word & PowerPoint Converter';
+
+    const descriptionText = isWordToPdfPage
+      ? 'Convert Word DOCX files to PDF online for free with FileConvert. Upload your document, convert it in your browser, and download the PDF.'
+      : 'Convert PDF, Word, PowerPoint, Excel and images online for free with FileConvert. Easy online file conversion tools.';
+
+    let description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (!description) {
+      description = document.createElement('meta');
+      description.name = 'description';
+      document.head.appendChild(description);
+    }
+    description.content = descriptionText;
+
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = window.location.origin + (isWordToPdfPage ? wordPdfPath : '/');
+
+    const handlePopState = () => {
+      const onWordPdf = window.location.pathname.replace(/\/+$/, '') === wordPdfPath;
+      setIsWordToPdfPage(onWordPdf);
+      setShowConverter(onWordPdf);
+      if (onWordPdf) setSelected('word-pdf');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [isWordToPdfPage]);
 
   function clearResults() {
 
@@ -221,6 +261,12 @@ function App() {
 
     setSelected(id);
     setShowConverter(true);
+    const isWordPdf = id === 'word-pdf';
+    setIsWordToPdfPage(isWordPdf);
+    const nextPath = isWordPdf ? wordPdfPath : '/';
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({}, '', nextPath);
+    }
 
     setFiles([]);
 
@@ -469,6 +515,23 @@ function App() {
 
       <main>
 
+        {isWordToPdfPage && <section className='seo-content word-pdf-seo' aria-labelledby='word-pdf-title'>
+          <h1 id='word-pdf-title'>Convert Word to PDF Online for Free</h1>
+          <p>Use FileConvert to turn a Microsoft Word DOCX document into a PDF file. Choose your Word document, convert it in your browser, and download the PDF when it is ready.</p>
+          <h2>How to Convert Word to PDF</h2>
+          <ol>
+            <li>Choose your DOCX Word document using the upload area below.</li>
+            <li>Click <strong>Convert now</strong> and wait for the conversion to finish.</li>
+            <li>Click the download link to save your PDF file.</li>
+          </ol>
+          <h2>Free DOCX to PDF Converter</h2>
+          <p>This online Word to PDF tool works directly in your browser and does not require an account. Your selected file is processed on your device and is not uploaded to a conversion server.</p>
+          <h2>What to Know About the Conversion</h2>
+          <p>The converter extracts text from DOCX files and creates a PDF from that text. The original Word page layout, images, fonts, tables, and complex formatting may not be preserved exactly. For best results, use a text-based DOCX document.</p>
+          <h2>Related File Conversion Tools</h2>
+          <p><a href='/' onClick={event => { event.preventDefault(); setIsWordToPdfPage(false); setShowConverter(false); window.history.pushState({}, '', '/'); }}>Explore all FileConvert tools</a> to convert PDF to Word, PowerPoint to PDF, Excel to PDF, and more.</p>
+        </section>}
+
         {!showConverter && <section className='hero'>
 
           <div className='eyebrow'><Sparkles size={14} /> ALL-IN-ONE FILE CONVERTER</div>
@@ -510,7 +573,14 @@ function App() {
               className='text-button'
               aria-label='Back to all tools'
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 16, padding: '10px 14px', border: '1px solid #d7deea', borderRadius: 8, background: '#ffffff', color: '#27364a', fontSize: 14, fontWeight: 600, cursor: 'pointer', visibility: 'visible', opacity: 1 }}
-              onClick={() => { setShowConverter(false); setFiles([]); clearResults(); if (inputRef.current) inputRef.current.value = ''; }}
+              onClick={() => {
+                setShowConverter(false);
+                setFiles([]);
+                clearResults();
+                setIsWordToPdfPage(false);
+                if (window.location.pathname !== '/') window.history.pushState({}, '', '/');
+                if (inputRef.current) inputRef.current.value = '';
+              }}
             >
               ← Back to all tools
             </button>

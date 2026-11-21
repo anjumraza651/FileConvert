@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/word-to-pdf",
+      "destination": "/"
+    }
+  ]
+}
